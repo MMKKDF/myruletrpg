@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="stylesheet.css">
+    <meta charset="utf-8">
+    <title>キャラクターシート作成ページ</title>
+  </head>
+  <body>
+    
+    <div class="part-status">
+        <div class="status-c">
+            <div class="status-s">
+                <p1>名前</p1>
+                <input id="nameTarget" type="text" class="frame_wide">
+                <p1>年齢</p1>
+                <input id="oldTarget" type="text" class="frame" style="text-align:center">
+                <p1>才</p1>
+            </div>
+        </div>
+        <div class="status-contents">
+            <div class="content-c">
+                <div class="content-s">
+                    <p1>スピード　</p1>
+                    <input id="speedTarget" type="text" class="frame" name="input2" style="text-align:center" onchange="reCalc2();">
+                </div>
+            </div>
+            <div class="content-c">
+                <div class="content-s">
+                    <p1>スタミナ　</p1>
+                    <input id="staminaTarget" type="text" class="frame" style="text-align:center" onchange="reCalc2();">
+                </div>
+            </div>
+            <div class="content-c">
+                <div class="content-s">
+                    <p1>スピリット</p1>
+                    <input id="spilitTarget" type="text" class="frame" name="input1" style="text-align:center" onchange="reCalc2();">
+                </div>
+            </div>
+        </div>
+        <div class="status-contents">
+            <div>
+                <li class="content-cnew">
+                    <div class="largenumbers" style="text-align:center">
+                        PP
+                    </div>
+                    <div class="content-s">
+                        <input id="pointTarget" type="text" class="bigframe" name="result1"style="text-align:center" readonly>                        
+                    </div>
+                </li>
+                <li class="content-cnew">
+                    <div class="largenumbers" style="text-align:center">
+                        移動量
+                    </div>
+                    <div class="content-s">
+                        <input id="initTarget" type="text" class="bigframe" name="result2" style="text-align:center" readonly>                       
+                    </div>
+                </li>
+                <div class="ccfolia">
+                    <button class="copyButton" type="button">CCFOLIA</button>
+                </div>
+                
+            </div>
+        </div>
+                    
+        <div>
+                <textarea id="memoTarget" class="memo" wrap="hard"></textarea>
+        </div>
+        <div class="separate-line">
+                
+        </div>
+        <div>
+            
+            <div class="skill-selector">
+                スキル記入欄
+                <div>
+                    ・パッシブ
+                        <div class="content-c">
+                            <label>1.</label>
+                            <input type="text" class="frame_wide" id="skill_1-name">
+                            <div class="content-s">
+                                <textarea class="writting-tex" wrap="soft" id="skill_1-detail"></textarea>
+                            </div>    
+                        </div>
+                        <div class="content-c">
+                            <label>2.</label>
+                            <input type="text" class="frame_wide" id="skill_2-name">
+                            <div class="content-s">
+                                <textarea class="writting-tex" wrap="soft" id="skill_2-detail"></textarea>
+                            </div>    
+                        </div>
+                </div>
+
+                <div class="adder" name="adding" id="SE">
+                    ・アクティブ
+                </div>
+                <input type="button" class="skill-add" value="入力欄を増やす" onclick="frameAdd()"><input type="button" class="skill-add" value="削除" onclick="frameEraser()">
+            </div>
+            <input type="button" class="createTex" value="ファイル出力" onclick="createFile()">
+        </div>
+        
+
+        
+    </div>
+
+    
+    
+    <textarea placeholder="ここにペーストしてコピーできたか確認できます。"></textarea>
+    <script>
+        let skill_count=1;
+        const input1 = document.querySelector("input[name=input1]");
+        const input2 = document.querySelector("input[name=input2]");
+        const result1 = document.querySelector("input[name=result1]");
+        const result2 = document.querySelector("input[name=result2]");
+        const calc = ()=>{
+            result2.value = Number(input2.value);
+            result1.value = Number(input1.value);
+        }
+
+        input1.addEventListener("keyup", calc, false);
+        input2.addEventListener("keyup", calc, false);
+        
+            
+        
+
+        var username = document.getElementById("nameTarget");
+        var speed = document.getElementById("speedTarget");
+        var stamina=document.getElementById("staminaTarget");
+        var spilit = document.getElementById("spilitTarget");
+        var powerpoint =document.getElementById("pointTarget");
+        var initiative = document.getElementById("initTarget");
+
+
+        const button = document.querySelector('button');
+
+        button.addEventListener('click', () => {
+        if (!navigator.clipboard) {
+            alert("このブラウザは対応していません");
+            return;
+        }
+
+        navigator.clipboard.writeText("{\"kind\":\"character\",\"data\":{\"name\":\""+username.value+"\",\"initiative\":\""+initiative.value+"\",\"commands\":\"2d6<={スピード}+{PP} 【スピード】\\n2d6<={スタミナ}+{PP} 【スタミナ】\\n2d6<={スピリット}+{PP} 【スピリット】\",\"status\":[{\"label\":\"PP\",\"value\":\""+powerpoint.value+"\",\"max\":\"0\"},{\"label\":\"位置取り\",\"value\":\"0\",\"max\":\"0\"}],\"params\":[{\"label\":\"スピード\",\"value\":\""+speed.value+"\"},{\"label\":\"スタミナ\",\"value\":\""+stamina.value+"\"},{\"label\":\"スピリット\",\"value\":\""+spilit.value+"\"}]}}").then(
+        () => {
+        alert('文章をコピーしました。');
+        },
+        () => {
+        alert('コピーに失敗しました。');
+        });
+        });
+        
+        function frameAdd(){
+            const newdiv_base=document.createElement('div');
+            newdiv_base.id=skill_count;
+            
+            const newdiv_1=document.createElement('div');
+            newdiv_1.classList.add("content-c");
+            const newdiv_2=document.createElement('div');
+            newdiv_2.classList.add("content-s");
+
+            const newForm_1 = document.createElement('input');
+            newForm_1.type = 'text';
+            newForm_1.classList.add("frame_wide")
+            
+            const newForm_2 = document.createElement('textarea');
+            newForm_2.type = 'text';
+            newForm_2.classList.add("writting-tex")
+
+
+            const newLabel = document.createElement('label');
+            newLabel.textContent = skill_count+'.';
+            
+            newLabel.appendChild(newForm_1);
+            newdiv_2.appendChild(newForm_2);
+            newdiv_1.appendChild(newLabel);
+            newdiv_1.appendChild(newdiv_2);
+            
+            newdiv_base.appendChild(newdiv_1);
+
+            document.querySelector("div[class=adder]").appendChild(newdiv_base);
+            
+            skill_count++;
+        }
+        
+        function frameEraser(){
+            document.querySelector('#SE').lastElementChild.remove();
+            skill_count--;
+        }
+
+        function createFile(){
+            var username = document.getElementById("nameTarget");
+            var year=document.getElementById("oldTarget");
+            var speed = document.getElementById("speedTarget");
+            var stamina=document.getElementById("staminaTarget");
+            var spilit = document.getElementById("spilitTarget");
+            var powerpoint =document.getElementById("pointTarget");
+            var initiative = document.getElementById("initTarget");
+            var memo=document.getElementById("memoTarget");
+            var skillname_1=document.getElementById("skill_1-name");
+            var skillname_2=document.getElementById("skill_2-name");
+            var skilldetail_1=document.getElementById("skill_1-detail");
+            var skilldetail_2=document.getElementById("skill_2-detail");
+            
+            let str = "●プレイヤー名："+username.value+"　年齢："+year.value+"才\r\n ・ステータス\r\n　スピード："+speed.value+" , スタミナ："+stamina.value+" , スピリット："+spilit.value+"\r\n　PP："+powerpoint.value+" , 移動量："+initiative.value+"\r\n \r\n●メモ\r\n"+memo.value+"\r\n \r\n●スキル\r\n"+" ・パッシブ\r\n　1."+skillname_1.value+"\r\n　　"+skilldetail_1.value+"\r\n \r\n　2."+skillname_2.value+"\r\n　　"+skilldetail_2.value+"\r\n"; // 出力文字列
+            let ary = str.split('');
+            let blob = new Blob(ary,{type:"text/plan"}); 
+            let link = document.createElement('a'); 
+            link.href = URL.createObjectURL(blob); 
+            link.download = "CharacterSheet.txt"; 
+            link.click(); 
+        }
+    </script>
+  </body>
+</html>

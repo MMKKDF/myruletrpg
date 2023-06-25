@@ -1,0 +1,164 @@
+body{
+    font-family:"Avenir Next";
+}
+
+.title{
+    color: #02ccba;
+}
+
+.content-s{
+    width:fit-content;
+    padding: 0.2em 0.2em;
+    margin: 0em 0.05;
+    font-weight: bold;
+    background: rgb(253, 252, 251);
+    border: solid 1.8px #a8a8a8;/*線*/
+    border-radius: 4px;/*角の丸み*/
+}
+.content-s p{
+    color: #d3d3d3;/*文字色*/
+}
+
+.content-c{
+    padding: 0.05em 0.05em;
+    margin: 0 0.5em;
+    font-weight: bold;
+    border: solid 0.25px #a8a8a8;
+    width: fit-content;
+}
+
+.content-cnew{
+    padding: 0.05em 0.05em;
+    margin-top: 0.5em;
+    margin-left:0.5em;
+    font-weight: bold;
+    border: solid 0.25px #a8a8a8;
+    width: fit-content;
+}
+
+.part-status{
+    width: fit-content;
+    height:fit-content;
+    padding: 1em 1em;
+    margin: 1em ;
+    color: #5d627b;
+    background: white;
+    border-top: solid 8px #5d627b;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.22);
+}
+
+.frame{
+    width:50px;
+    font-size: 20px;
+    outline:none;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-color: #d3d3d3;
+    color: rgb(78, 78, 78);
+}
+
+.frame_wide{
+    width:180px;
+    font-size: 20px;
+    outline:none;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-color: #d3d3d3;
+    color: rgb(78, 78, 78);
+    margin-bottom: 5px;
+}
+.copyButton{
+    border-radius: 7px;
+    padding: 1px 5px;
+    background-color: rgb(69, 71, 75);
+    color: rgb(255, 255, 255);
+    font-size: 1rem;
+    text-decoration-line: 10px;
+    border-color: #d3d3d3;
+    font-family:Arial;
+    font-weight: bold;
+    margin:0.4em 0;
+    text-shadow: 1px 1px 1px rgb(17, 17, 17);
+}
+
+.bigframe{
+    width:50px;
+    font-size: 25px;
+    outline:none;
+    border:none;
+    color: rgb(78, 78, 78);
+    
+}
+
+.largenumbers{
+    width:fit-content;
+    font-weight: bold;
+    font-size: large;
+    padding:1px 5px;
+}
+
+li{
+    list-style: none;
+    float:left;
+}
+
+.ccfolia{
+    float:right;
+    margin-top: 4em;
+}
+
+.skill-status{
+    border:solid;
+    padding: 4px;
+    margin: 3px;
+}
+
+.memo{
+    width: 280px;
+    height: 100px;
+    margin-left: 7px;
+}
+
+.separate-line{
+    border-bottom:solid;
+    border-width: 1px;
+    border-style:dashed;
+    width: 300px;
+    margin-top: 5px;
+
+}
+
+.skill-selector{
+    font-weight:bold ;
+    padding:5px;
+}
+
+.skill-add{
+    width:fit-content;
+    height: 2.5em;
+    margin: 8px 5px;
+    padding: 4px 5px;
+    border-radius: 4px;
+    background-color: rgb(98, 98, 129);
+    color: white;
+}
+
+.adder{
+    font-weight:bold ;
+}
+
+.skill-text{
+    border-color: #d3d3d3;
+    width: max-content;
+    height: max-content;
+}
+
+.writting-tex{
+    border : none;
+    outline : none;
+    background: rgb(253, 252, 251);
+    width: 250px;
+    height: 40px;
+}
